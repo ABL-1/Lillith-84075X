@@ -3,10 +3,9 @@
 #include "UserControll.h"
 #include "AutonSkills.h"
 #include "AutonQualification.h"
-#include "AutonMain.h"
+#include "UI.h"
 #include "AutonFunction.h"
 #include "AutonElimination.h"
-#include "PID.h"
 #include "api.h"
 
 pros::Motor leftfrontmotor (-6, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
@@ -27,6 +26,6 @@ pros::Motor Intake3 (-18, pros::v5::MotorGears::green, pros::v5::MotorUnits::deg
 
 pros::Controller Controller1 (CONTROLLER_MASTER);
 
-pros::adi::AnalogOut scooper ('G');
-pros::adi::AnalogOut parker ('H');
-pros::adi::AnalogOut pummeler ('F');
+pros::adi::DigitalOut scooper ('G');
+pros::adi::DigitalOut parker ('H');
+pros::adi::DigitalOut pummeler ('F');

@@ -3,10 +3,9 @@
 #include "UserControll.h"
 #include "AutonSkills.h"
 #include "AutonQualification.h"
-#include "AutonMain.h"
+#include "UI.h"
 #include "AutonFunction.h"
 #include "AutonElimination.h"
-#include "PID.h"
 
 
 // A global instance of competition
@@ -28,11 +27,12 @@
 void initialize(void) {
 
   // All activities that occur before the competition starts
-  
-  screen_set_eraser(pros::c::COLOR_BLACK);
 
-  startScreen();
-
+ // startScreen();
+  pros::delay(100);
+  UI();
+  lv_obj_update_layout(lv_screen_active());
+  lv_refr_now(NULL);
   // PIDcontroll = false;
 
   // vex::task PID(drivetrainPID);

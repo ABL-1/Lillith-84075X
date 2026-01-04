@@ -1,4 +1,3 @@
-#include "PID.h"
 #include "Devices.h"
 //#include "lemlib.api.hpp"
 #include "main.h"
@@ -71,41 +70,41 @@
 // }
 
 void Devour(){
-    Intake1.move_velocity(100);
-    Intake2.move_velocity(-100);
+    Intake1.move_voltage(12000);
+    Intake2.move_voltage(-8000);
     // Intake1.spin(reverse);
     // Intake2.spin(forward);
 }
 
 void Halt_Intake(){
-    Intake1.move_velocity(0);
-    Intake2.move_velocity(0);
-    Intake3.move_velocity(0);
+    Intake1.move_voltage(0);
+    Intake2.move_voltage(0);
+    Intake3.move_voltage(0);
 }
 
 void ScoreBottom(){
-    Intake1.move_velocity(100);
-    Intake2.move_velocity(-100);
+    Intake1.move_voltage(12000);
+    Intake2.move_voltage(-8000);
     // Intake1.spin(forward);
     // Intake2.spin(reverse);
-    Intake3.move_velocity(100);
+    Intake3.move_voltage(8000);
     // Intake3.spin(forward);
 }
 
 void ScoreMiddle(){
-    Intake3.move_velocity(-100);
+    Intake3.move_voltage(-8000);
     // Intake3.spin(reverse);
-    Intake1.move_velocity(-100);
-    Intake2.move_velocity(-100);
+    Intake1.move_voltage(-12000);
+    Intake2.move_voltage(-8000);
 //     Intake1.spin(reverse);
 //     Intake2.spin(reverse);
 }
 
 void ScoreTop(){
-    Intake3.move_velocity(100);
+    Intake3.move_voltage(8000);
     // Intake3.spin(forward);
-    Intake1.move_velocity(-100);
-    Intake2.move_velocity(-100);
+    Intake1.move_voltage(-12000);
+    Intake2.move_voltage(-8000);
     // Intake1.spin(reverse);
     // Intake2.spin(reverse);
 }
