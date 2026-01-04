@@ -13,12 +13,14 @@ void SkillsAuton(){
 
     if(Path_selected == 5){
       //this is where the skills path goes
+      Devour();
+      pros::c::delay(5000);
     }
 
     if(Path_selected < 5){
       return;
     }
-    
+
   } else {
     return;
   }

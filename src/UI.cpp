@@ -8,10 +8,19 @@
 #include "main.h"
 #include "liblvgl/lvgl.h"
 
-void AutonLogic(){
-  QualificationAutonLogic();
-  EliminationAutonLogic();
-  SkillsAuton();
+void AutonLogic() {
+
+  isAutonActive = true;
+
+  if (Qualification_selected) {
+    QualificationAutonLogic();
+  } else if (Elimination_selected) {
+    EliminationAutonLogic();
+  } else {
+    SkillsAuton();
+  }
+
+  isAutonActive = false;
 }
 
 NamedMotor robot_motors[9] = {

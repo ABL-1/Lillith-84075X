@@ -15,6 +15,7 @@ void QualificationAutonLogic() {
 
     if(Path_selected == 1 || Path_selected == 3){
       //This is where the code for the Right side auton red and blue go
+      
     }
 
     if(Path_selected == 2 || Path_selected == 4){

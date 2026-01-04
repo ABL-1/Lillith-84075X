@@ -28,14 +28,10 @@ void initialize(void) {
 
   // All activities that occur before the competition starts
 
- // startScreen();
   pros::delay(100);
   UI();
   lv_obj_update_layout(lv_screen_active());
   lv_refr_now(NULL);
-  // PIDcontroll = false;
-
-  // vex::task PID(drivetrainPID);
 
 }
 
@@ -83,10 +79,6 @@ void opcontrol(void) {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
-    if(Controller1.get_digital(pros::E_CONTROLLER_DIGITAL_A) && Controller1.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT) && 
-    Controller1.get_digital(pros::E_CONTROLLER_DIGITAL_X) && Controller1.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
-      AutonLogic();
-    }
 
     rc_auto_loop_function_Controller1();
 
