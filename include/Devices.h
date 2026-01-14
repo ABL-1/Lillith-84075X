@@ -1,4 +1,4 @@
-
+#include "lemlib/api.hpp"
 #include "main.h" 
 extern pros::Controller Controller1;
 extern pros::Motor leftfrontmotor;
@@ -16,3 +16,5 @@ extern pros::Motor Intake3;
 extern pros::adi::DigitalOut scooper;
 extern pros::adi::DigitalOut parker; 
 extern pros::adi::DigitalOut pummeler;
+
+extern lemlib::Chassis chassis;

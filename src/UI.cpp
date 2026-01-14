@@ -7,20 +7,20 @@
 #include "AutonElimination.h"
 #include "main.h"
 #include "liblvgl/lvgl.h"
+#include "lemlib/api.hpp"
 
 void AutonLogic() {
 
-  isAutonActive = true;
-
-  if (Qualification_selected) {
+ if (Qualification_selected == true) {
+    Controller1.print(0, 0, "Qualification", 0);
     QualificationAutonLogic();
-  } else if (Elimination_selected) {
+ } else if (Elimination_selected == true) {
+    Controller1.print(0, 0, "Elimination", 0);
     EliminationAutonLogic();
-  } else {
+ } else {
+    Controller1.print(0, 0, "Skills", 0);
     SkillsAuton();
   }
-
-  isAutonActive = false;
 }
 
 NamedMotor robot_motors[9] = {
@@ -43,7 +43,7 @@ lv_obj_t * skills_menu;
 bool Elimination_state = false;   //these variables are for use in this file to say which secreen is selected
 bool Qualification_state = false;
 
-int Path_selected = -1;
+// int Path_selected = -1;
 bool Elimination_selected = false; // these variables are what actually define the auton path.
 bool Qualification_selected = false;
 
@@ -154,7 +154,15 @@ static void auton_path_cb(lv_event_t * e){
         if(Elim_Qual_buttons[i] == clicked_btn) {
             // Highlight the selected button
 
-            Path_selected = i;
+            if(i == 0){
+              Path_selected = 0;
+            } else if(i == 1){
+              Path_selected = 1;
+            } else if(i == 2){
+              Path_selected = 2;
+            } else if(i == 3){
+              Path_selected = 3;
+            } 
 
             if(Elimination_state == true){
               Elimination_selected = true;
@@ -233,6 +241,18 @@ static void skills_cb(lv_event_t * e) {
 
 }
 
+lv_obj_t * btn_Callibrate;
+
+static void callibrate_cb(lv_event_t * e){
+  chassis.calibrate();
+  while (inertialsensor.is_calibrating()) {
+        lv_obj_set_style_bg_color(btn_Callibrate, lv_palette_main(LV_PALETTE_RED), 0);
+        pros::delay(200);
+    }
+  lv_obj_set_style_bg_color(btn_Callibrate, lv_palette_main(LV_PALETTE_GREEN), 0);
+  Controller1.rumble("."); 
+}
+
 void UI(){
 // 1. Get the active screen (Corrected for LVGL v9)
     lv_obj_t * screen = lv_screen_active(); 
@@ -255,6 +275,13 @@ void UI(){
     lv_obj_align(btn_Auton, LV_ALIGN_CENTER, -90, 0);
     lv_obj_t * label_Auton = lv_label_create(btn_Auton);
     lv_label_set_text(label_Auton, "Auton Selection");
+
+    btn_Callibrate = lv_button_create(main_menu); 
+    lv_obj_align(btn_Callibrate, LV_ALIGN_TOP_LEFT, 0, 0);
+    lv_obj_set_size(btn_Callibrate, 120, 40);
+    lv_obj_t * label_Callibrate = lv_label_create(btn_Callibrate);
+    lv_label_set_text(label_Callibrate, "Calibrate");
+    lv_obj_center(label_Callibrate);
 
     lv_obj_t* banner_main = lv_obj_create(main_menu);
     lv_obj_set_size(banner_main, 480, 40);
@@ -462,6 +489,7 @@ void UI(){
 
     lv_obj_add_event_cb(btn_diag_Motor, switch_page_cb, LV_EVENT_CLICKED, diag_menu); // motor menu buttons
     lv_obj_add_event_cb(btn_back, switch_page_cb, LV_EVENT_CLICKED, main_menu);
+    lv_obj_add_event_cb(btn_Callibrate, callibrate_cb, LV_EVENT_CLICKED, NULL);
 
     lv_obj_add_event_cb(btn_Auton, switch_page_cb, LV_EVENT_CLICKED, auton_first_menue); // auton screen one buttons
     lv_obj_add_event_cb(btn_back_main, switch_page_cb, LV_EVENT_CLICKED, main_menu);

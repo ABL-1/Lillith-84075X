@@ -2,6 +2,7 @@
 #include "Devices.h"
 #include "AutonFunction.h"
 #include "UI.h"
+#include "lemlib/api.hpp"
 
 
 // define variable for remote controller enable/disable
@@ -10,41 +11,35 @@ bool RemoteControlCodeEnabled = true;
 bool DrivetrainLNeedsToBeStopped_Controller1 = true;
 bool DrivetrainRNeedsToBeStopped_Controller1 = true;
 
-bool isAutonActive = false;
-
 // define a task that will handle monitoring inputs from Controller1
 void rc_auto_loop_function_Controller1() {
   // process the controller input every 20 milliseconds
   // update the motors based on the input values
   while(true) {
     if(RemoteControlCodeEnabled) {
-      
-      if (Controller1.get_digital_new_press(DIGITAL_A) && Controller1.get_digital_new_press(DIGITAL_X) && Controller1.get_digital_new_press(DIGITAL_UP) && Controller1.get_digital_new_press(DIGITAL_LEFT)) {
-            
-            pros::Task autonTask(AutonLogic); 
-        }
-
-      if (!isAutonActive) {
 
           ////////////////////////////////////////////////////////////////////
           //     Joystick controlls
           ////////////////////////////////////////////////////////////////////
 
                 // Read the joystick values
-        int left_joystick_value = Controller1.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127 * 12000;
-        int right_joystick_value = Controller1.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y) / 127 * 12000;
+        int left_joystick_value = Controller1.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        int right_joystick_value = Controller1.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+
+        double left_drive_pw = left_joystick_value * 94.488;    //1 / 127 * 12000
+        double right_drive_pw = right_joystick_value * 94.488;  //1/ 127 * 12000
 
           // Optional: Implement a deadzone check to prevent the robot from drifting
-        const int DEADZONE = 5; 
+        const int DEADZONE = 20; 
 
-        if (std::abs(left_joystick_value) > DEADZONE) {
-            LeftDriveSmart.move_voltage(-1 * left_joystick_value);
-        } else {
-            LeftDriveSmart.move_voltage(0); // Stop motors if joystick is near center
+       if (std::abs(left_joystick_value) > DEADZONE) {
+            LeftDriveSmart.move_voltage(left_drive_pw);
+       } else {
+           LeftDriveSmart.move_voltage(0); // Stop motors if joystick is near center
         }
 
         if (std::abs(right_joystick_value) > DEADZONE) {
-            RightDriveSmart.move_voltage(-1 * right_joystick_value);
+            RightDriveSmart.move_voltage(right_drive_pw);
         } else {
             RightDriveSmart.move_voltage(0); // Stop motors if joystick is near center
         }
@@ -66,7 +61,9 @@ void rc_auto_loop_function_Controller1() {
                             robot_motors[i].motor->get_actual_velocity());
                     lv_label_set_text(motor_labels[i], buf);
                 }
+                Controller1.print(0, 0, "Left J %d Right J %d", left_joystick_value, right_joystick_value, 0);
             }
+
           last_ui_update = now;
         }
 
@@ -142,10 +139,10 @@ void rc_auto_loop_function_Controller1() {
           pummeler.set_value(0);
           // pros::c::adi_digital_write(pummeler, false);
         }
-      }
+      
 
     // wait before repeating the process
-    pros::c::delay(20);
+    pros::c::delay(25);
   }
 
 }

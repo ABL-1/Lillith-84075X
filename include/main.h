@@ -80,6 +80,4 @@ void opcontrol(void);
 
 #endif  // _PROS_MAIN_H_
 
-#define waitUntil(condition) do { wait(5, msec); } while (!(condition))
-
-void delay(unsigned long msec);
+extern int Path_selected;

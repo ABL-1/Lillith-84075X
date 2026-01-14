@@ -6,6 +6,7 @@
 #include "UI.h"
 #include "AutonFunction.h"
 #include "AutonElimination.h"
+#include "lemlib/api.hpp"
 
 
 // A global instance of competition
@@ -23,6 +24,7 @@
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
 
+int Path_selected = -1;
 
 void initialize(void) {
 
@@ -32,6 +34,8 @@ void initialize(void) {
   UI();
   lv_obj_update_layout(lv_screen_active());
   lv_refr_now(NULL);
+
+  chassis.calibrate(); // Calibrate sensors
 
 }
 

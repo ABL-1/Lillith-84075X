@@ -6,6 +6,7 @@
 #include "UI.h"
 #include "AutonFunction.h"
 #include "AutonElimination.h"
+#include "lemlib/api.hpp"
 
 
 void EliminationAutonLogic() {                // Different aoutonomous paths, this is where the actual auton code goes.

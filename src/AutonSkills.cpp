@@ -6,6 +6,7 @@
 #include "AutonFunction.h"
 #include "AutonElimination.h"
 #include "main.h"
+#include "lemlib/api.hpp"
 
 
 void SkillsAuton(){
@@ -13,8 +14,18 @@ void SkillsAuton(){
 
     if(Path_selected == 5){
       //this is where the skills path goes
-      Devour();
-      pros::c::delay(5000);
+
+     Devour();
+     
+      chassis.setPose(0, 0, 0);
+
+     
+      chassis.moveToPoint(0, -30, 750);
+
+      pros::c::delay(4000);
+
+      parker.set_value(1);
+  
     }
 
     if(Path_selected < 5){

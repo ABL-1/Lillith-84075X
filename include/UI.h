@@ -18,6 +18,6 @@ void AutonLogic();
 
 extern bool Elimination_selected;
 extern bool Qualification_selected;
-extern int Path_selected;
+// extern int Path_selected;
 
 #endif // Include Guard ends
