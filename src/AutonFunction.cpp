@@ -16,7 +16,7 @@ void Halt_Intake(){
 }
 
 void ScoreBottom(){
-    Intake1.move_voltage(-12000);
+    Intake1.move_voltage(-9000);
     Intake2.move_voltage(8000);
     Intake3.move_voltage(8000);
 }

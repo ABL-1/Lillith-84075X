@@ -32,7 +32,7 @@ void QualificationAutonLogic() {
 
       chassis.turnToHeading(-45, 1000);
 
-      chassis.moveToPoint(2.5, 29.5, 2000);
+      chassis.moveToPoint(3, 30.5, 2000);
 
       chassis.turnToHeading(-45, 1000);
 
@@ -42,29 +42,33 @@ void QualificationAutonLogic() {
 
       Halt_Intake();
 
-      chassis.moveToPoint(40, 0, 3200, {.forwards = false}); //move to loader
+      chassis.moveToPoint(35, 0, 3200, {.forwards = false}); //move to loader
 
       chassis.turnToHeading(180, 1000);
 
       scooper.set_value(1);
 
-      // Devour();
+      Devour();
 
-      // chassis.moveToPoint(40, -18, 2000);
+      chassis.moveToPoint(37, -20, 1000); //hits the loader
 
-      // pros::c::delay(2000);
+      pros::c::delay(350);
 
-      // chassis.moveToPoint(35, 0, 3200, {.forwards = false});
+      chassis.moveToPoint(37, -7, 2000, {.forwards = false});  // revert y value to zero when we swap to odometry
 
-      // chassis.turnToHeading(180, 1000);
+      chassis.turnToHeading(180, 1500);
 
-      // scooper.set_value(0);
+      scooper.set_value(0);
 
-      // chassis.moveToPoint(24, 22, 1500);
+      pros::c::delay(1000);
 
-      // ScoreTop();
+      chassis.moveToPoint(38, 13, 1500); //approaches the loader
 
-      // pros::c::delay(3000);
+      chassis.turnToHeading(15, 1500);
+
+      ScoreTop();
+
+      pros::c::delay(3000);
 
     }
 
@@ -87,19 +91,19 @@ void QualificationAutonLogic() {
 
       pros::c::delay(2000);
 
-      chassis.turnToHeading(45, 1000);
+      // chassis.turnToHeading(45, 1000);
 
-      chassis.moveToPoint(-5, 31, 1000);
+      // chassis.moveToPoint(-5, 31, 1000);
 
-      chassis.turnToHeading(45, 1000);
+      // chassis.turnToHeading(45, 1000);
 
-      ScoreMiddle();
+      // ScoreMiddle();
 
-      pros::c::delay(2000);
+      // pros::c::delay(2000);
 
-      Halt_Intake();
+      // Halt_Intake();
 
-      chassis.moveToPoint(-40, 0, 3200, {.forwards = false}); //move to loader
+      chassis.moveToPoint(-38, 0, 3200, {.forwards = false}); //move to loader
 
       chassis.turnToHeading(180, 1000);
 
@@ -107,21 +111,23 @@ void QualificationAutonLogic() {
 
       // Devour();
 
-      // chassis.moveToPoint(-40, -18, 2000);
+      chassis.moveToPoint(-42, -20, 1000); //hits the loader
 
-      // pros::c::delay(2000);
+      pros::c::delay(200);
 
-      // chassis.moveToPoint(-35, 0, 3200, {.forwards = false});
+      chassis.moveToPoint(-42, -7, 2000, {.forwards = false});  // revert y value to zero when we swap to odometry
 
-      // chassis.turnToHeading(180, 1000);
+      chassis.turnToHeading(180, 1500);
 
-      // scooper.set_value(0);
+      pros::c::delay(1000);
 
-      // chassis.moveToPoint(-24, 22, 1500);
+      scooper.set_value(0);
 
-      // ScoreTop();
+      chassis.moveToPoint(-42, 9, 1500); //approaches the loader
 
-      // pros::c::delay(3000);
+      ScoreTop();
+
+      pros::c::delay(3000);
 
     }
 
