@@ -15,14 +15,14 @@ void SkillsAuton(){
     if(Path_selected == 5){
       //this is where the skills path goes
 
-     Devour();
+      Devour();
      
       chassis.setPose(0, 0, 0);
 
      
-      chassis.moveToPoint(0, -30, 750);
+      chassis.moveToPoint(30, 0, 500);
 
-      pros::c::delay(4000);
+      pros::c::delay(3000);
   
     }
 

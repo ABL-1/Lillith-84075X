@@ -107,6 +107,7 @@ void rc_auto_loop_function_Controller1() {
           Intake1.move_voltage(0);
           Intake2.move_voltage(0);
           Intake3.move_voltage(0);
+          gate.set_value(0);
         }
 
         if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){ // Lowers the loader reloader

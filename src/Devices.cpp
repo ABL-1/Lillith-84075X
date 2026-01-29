@@ -37,11 +37,11 @@ pros::adi::DigitalOut unloader ('c');
 lemlib::Drivetrain drivetrain(&LeftDriveSmart, &RightDriveSmart, 11, lemlib::Omniwheel::NEW_325, 450, 2);
 
 // Lateral PID settings
-lemlib::ControllerSettings lateral_controller(10, 0, 3, 3, 1, 100, 3, 500, 20);
-                                             //kP, kI, kD
+lemlib::ControllerSettings lateral_controller(20, 0, 40, 3, 1, 100, 3, 500, 20); //this needs to be tuned
+                                            //kP, kI, kD
 // Angular PID settings
-lemlib::ControllerSettings angular_controller(1.6, 0, 10, 3, 1, 100, 3, 500, 0);
-                                             //kP, kI, kD
+lemlib::ControllerSettings angular_controller(1.6, 0, 10, 3, 1, 100, 3, 500, 0); //this needs to be tuned
+                                            //kP, kI, kD
 // Sensors for odometry
 lemlib::OdomSensors sensors(nullptr, nullptr, nullptr, nullptr, &inertialsensor);
 
