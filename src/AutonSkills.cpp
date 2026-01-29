@@ -23,8 +23,6 @@ void SkillsAuton(){
       chassis.moveToPoint(0, -30, 750);
 
       pros::c::delay(4000);
-
-      parker.set_value(1);
   
     }
 

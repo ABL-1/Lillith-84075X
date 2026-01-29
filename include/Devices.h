@@ -14,7 +14,7 @@ extern pros::Motor Intake1;
 extern pros::Motor Intake2;
 extern pros::Motor Intake3;
 extern pros::adi::DigitalOut scooper;
-extern pros::adi::DigitalOut parker; 
-extern pros::adi::DigitalOut pummeler;
+extern pros::adi::DigitalOut gate; 
+extern pros::adi::DigitalOut unloader;
 
 extern lemlib::Chassis chassis;

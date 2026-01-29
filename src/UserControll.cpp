@@ -76,25 +76,30 @@ void rc_auto_loop_function_Controller1() {
         if (Controller1.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){ // Scores the blocks on the low goals
           Intake1.move_voltage(-12000);
           Intake2.move_voltage(8000);
-          Intake3.move_voltage(8000);
+          Intake3.move_voltage(-8000);
+          gate.set_value(0);
         }
 
 
         if (Controller1.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){ // Scores the blocks on the medium goals
-          Intake3.move_voltage(8000);
+          Intake3.move_voltage(-8000);
           Intake1.move_voltage(12000);
-          Intake2.move_voltage(8000);
+          Intake2.move_voltage(-8000);
+          gate.set_value(0);
         }
 
         if (Controller1.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){ // Scores the blocks on the high goals
-          Intake3.move_voltage(-8000);
           Intake1.move_voltage(12000);
-          Intake2.move_voltage(8000);
+          Intake2.move_voltage(-8000);
+          Intake3.move_voltage(8000);
+          gate.set_value(1);
         }
 
         if (Controller1.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){ // Store the blocks
           Intake1.move_voltage(12000);
           Intake2.move_voltage(-8000);
+          Intake3.move_voltage(8000);
+          gate.set_value(0);
         }
 
 
@@ -116,28 +121,16 @@ void rc_auto_loop_function_Controller1() {
           // pros::c::adi_digital_write(scooper, false);
         }
 
-        if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)){ // Extend the parking mech
+        if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){ // Extend the de-score mech
           // parker.write(true);
-          parker.set_value(1);
+          unloader.set_value(0);
           // pros::c::adi_digital_write(parker, true);
         }
 
-        if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)){ // Retract the parking mech
+        if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)){ // Retract the de-score mech
           // parker.write(false);
-          parker.set_value(0);
+          unloader.set_value(1);
           // pros::c::adi_digital_write(parker, false);
-        }
-
-        if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){
-          // pummeler.write(true); 
-          pummeler.set_value(1);
-          // pros::c::adi_digital_write(pummeler, true);
-        }
-
-        if(!Controller1.get_digital(pros::E_CONTROLLER_DIGITAL_B)){
-          // pummeler.write(false);
-          pummeler.set_value(0);
-          // pros::c::adi_digital_write(pummeler, false);
         }
       
 
