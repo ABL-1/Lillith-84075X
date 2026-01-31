@@ -26,8 +26,8 @@ void rc_auto_loop_function_Controller1() {
         int left_joystick_value = Controller1.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
         int right_joystick_value = Controller1.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-        double left_drive_pw = left_joystick_value * 94.488;    //1 / 127 * 12000
-        double right_drive_pw = right_joystick_value * 94.488;  //1/ 127 * 12000
+        double left_drive_pw = left_joystick_value * 78.740; //1 / 127 * 10000;
+        double right_drive_pw = right_joystick_value * 78.740; //1/ 127 * 10000;
 
           // Optional: Implement a deadzone check to prevent the robot from drifting
         const int DEADZONE = 20; 

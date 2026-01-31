@@ -16,19 +16,23 @@ void QualificationAutonLogic() {
     if(Path_selected == 0 || Path_selected == 2){
       //This is where the code for the Right side auton red and blue go
     
-      pros::c::delay(200);
+      pros::c::delay(50);
 
       chassis.setPose(0, 0, 0);
 
-      pros::c::delay(200);
+      scooper.set_value(0);
+
+      unloader.set_value(1);
+
+      pros::c::delay(50);
 
       chassis.moveToPoint(0, 7, 2000);
 
       Devour();
       
-      chassis.moveToPoint(23, 36, 2000, {.maxSpeed = 33});  //voltage units from 0 to 127
+      chassis.moveToPoint(19, 31, 2000, {.maxSpeed = 32});  //voltage units from 0 to 127  this collects the three on the field
 
-      pros::c::delay(2000);
+      pros::c::delay(2500);
 
       chassis.turnToHeading(-45, 1000);
 
@@ -38,11 +42,13 @@ void QualificationAutonLogic() {
 
       ScoreBottom();
 
-      pros::c::delay(2000);
+      pros::c::delay(3000);
 
       Halt_Intake();
 
-      chassis.moveToPoint(35, 0, 3200, {.forwards = false}); //move to loader
+      chassis.moveToPoint(39, 2, 3200, {.forwards = false}); //move to loader
+
+      pros::c::delay(1000);
 
       chassis.turnToHeading(180, 1000);
 
@@ -50,50 +56,58 @@ void QualificationAutonLogic() {
 
       Devour();
 
-      chassis.moveToPoint(37, -20, 1000); //hits the loader
+      chassis.moveToPoint(39, -14, 1000); //hits the loader
 
-      pros::c::delay(350);
+      pros::c::delay(1400);
 
-      chassis.moveToPoint(37, 13, 2000, {.forwards = false});  // revert y value to zero when we swap to odometry
+      Halt_Intake();
+
+      pros::c::delay(15);
+
+      chassis.moveToPoint(41, 15, 2000, {.forwards = false});  
+
+      chassis.turnToHeading(180, 1000);
+
+      pros::c::delay(800);
 
       ScoreTop();
 
       pros::c::delay(3000);
 
     }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if(Path_selected == 1 || Path_selected == 3){
       //This is where the code for the Left side auton red and blue go
 
-      pros::c::delay(200);
+      pros::c::delay(50);
 
       chassis.setPose(0, 0, 0);
 
-      pros::c::delay(200);
+      pros::c::delay(50);
 
-      chassis.moveToPoint(0, 5, 2000);
-
-      chassis.turnToHeading(-45, 1000);
+      chassis.moveToPoint(0, 7, 2000);
 
       Devour();
       
-      chassis.moveToPoint(-18, 29, 2000, {.maxSpeed = 27});  //voltage units from 0 to 127
+      chassis.moveToPoint(-23, 35, 3000, {.maxSpeed = 28});  //voltage units from 0 to 127  this collects the three on the field
 
-      pros::c::delay(2000);
+      pros::c::delay(3000);
 
-      chassis.turnToHeading(-235, 1000);
+      // chassis.turnToHeading(-135, 1000);
 
-      chassis.moveToPoint(-5, 31, 1000, {.forwards = false});
+      // chassis.moveToPoint(-3, 30.5, 2000, {.forwards = false});
 
-      chassis.turnToHeading(-235, 1000);
+      // chassis.turnToHeading(-135, 1000);
 
-      ScoreMiddle();
+      // ScoreMiddle();
 
-      pros::c::delay(2000);
+      // pros::c::delay(2000);
 
       Halt_Intake();
 
-      chassis.moveToPoint(-38, 0, 3200, {.forwards = false}); //move to loader
+      chassis.moveToPoint(-41, 2, 3200, {.forwards = false}); //move to loader
+
+      pros::c::delay(1000);
 
       chassis.turnToHeading(180, 1000);
 
@@ -101,11 +115,19 @@ void QualificationAutonLogic() {
 
       Devour();
 
-      chassis.moveToPoint(-42, -20, 1000); //hits the loader
+      chassis.moveToPoint(-41, -14, 1000); //hits the loader
 
-      pros::c::delay(200);
+      pros::c::delay(1800);
 
-      chassis.moveToPoint(-42, 9, 2000, {.forwards = false});  // revert y value to zero when we swap to odometry
+      Halt_Intake();
+
+      pros::c::delay(15);
+
+      chassis.moveToPoint(-43, 16, 2000, {.forwards = false});  
+
+      chassis.moveToPoint(-43, 18, 1000, {.forwards = false});
+
+      pros::c::delay(800);
 
       ScoreTop();
 

@@ -17,10 +17,12 @@ void SkillsAuton(){
 
       Devour();
      
-      chassis.setPose(0, 0, 0);
+      // chassis.setPose(0, 0, 0);
 
      
-      chassis.moveToPoint(30, 0, 500);
+      // chassis.moveToPoint(30, 0, 500);
+
+      scooper.set_value(1); 
 
       pros::c::delay(3000);
   

@@ -14,10 +14,28 @@ void EliminationAutonLogic() {                // Different aoutonomous paths, th
 
     if(Path_selected == 1 || Path_selected == 3){
       //This is where the code for the Right side auton red and blue go
+
+      pros::c::delay(50);
+
+      chassis.setPose(0, 0, 0);
+
+      pros::c::delay(50);
+
+      chassis.moveToPoint(0, 4, 2000);
+
     }
 
     if(Path_selected == 2 || Path_selected == 4){
       //This is where the code for the Left side auton red and blue go
+
+      pros::c::delay(50);
+
+      chassis.setPose(0, 0, 0);
+
+      pros::c::delay(50);
+
+      chassis.moveToPoint(0, 4, 2000);
+
     }
 
     if(Path_selected == 5){
