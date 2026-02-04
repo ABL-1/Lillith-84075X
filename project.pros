@@ -636,7 +636,8 @@
     },
     "upload_options": {
       "icon": "X",
-      "description": "One bot to rule them all"
+      "description": "One bot to rule them all",
+      "slot": 1
     },
     "use_early_access": false
   }

@@ -21,8 +21,10 @@ void QualificationAutonLogic() {
       chassis.setPose(0, 0, 0);
 
       scooper.set_value(0);
+      scooper_state = false;
 
       unloader.set_value(1);
+      unloader_state = true;
 
       pros::c::delay(50);
 
@@ -53,6 +55,7 @@ void QualificationAutonLogic() {
       chassis.turnToHeading(180, 1000);
 
       scooper.set_value(1);
+      scooper_state = true;
 
       Devour();
 
@@ -85,6 +88,12 @@ void QualificationAutonLogic() {
 
       pros::c::delay(50);
 
+      scooper.set_value(0);
+      scooper_state = false;
+
+      unloader.set_value(1);
+      unloader_state = true;
+
       chassis.moveToPoint(0, 7, 2000);
 
       Devour();
@@ -112,6 +121,7 @@ void QualificationAutonLogic() {
       chassis.turnToHeading(180, 1000);
 
       scooper.set_value(1);
+      scooper_state = true;
 
       Devour();
 

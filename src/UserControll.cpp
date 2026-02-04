@@ -11,6 +11,9 @@ bool RemoteControlCodeEnabled = true;
 bool DrivetrainLNeedsToBeStopped_Controller1 = true;
 bool DrivetrainRNeedsToBeStopped_Controller1 = true;
 
+bool unloader_state = false;
+bool scooper_state = false;
+
 // define a task that will handle monitoring inputs from Controller1
 void rc_auto_loop_function_Controller1() {
   // process the controller input every 20 milliseconds
@@ -26,8 +29,8 @@ void rc_auto_loop_function_Controller1() {
         int left_joystick_value = Controller1.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
         int right_joystick_value = Controller1.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-        double left_drive_pw = left_joystick_value * 78.740; //1 / 127 * 10000;
-        double right_drive_pw = right_joystick_value * 78.740; //1/ 127 * 10000;
+        double left_drive_pw = left_joystick_value * 94.488; //1 / 127 * 10000;
+        double right_drive_pw = right_joystick_value * 94.488; //1/ 127 * 10000; 78.740
 
           // Optional: Implement a deadzone check to prevent the robot from drifting
         const int DEADZONE = 20; 
@@ -110,28 +113,32 @@ void rc_auto_loop_function_Controller1() {
           gate.set_value(0);
         }
 
-        if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){ // Lowers the loader reloader
-          // scooper.write(true);
-          scooper.set_value(1);
-          // pros::c::adi_digital_write(scooper, true);
-        }
+      
+        
 
         if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)){ // Raises the Loader reloader
-          // scooper.write(false);
-          scooper.set_value(0);
-          // pros::c::adi_digital_write(scooper, false);
+
+          scooper_state = !scooper_state; 
+
+          scooper.set_value(scooper_state);
+
         }
 
-        if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)){ // Extend the de-score mech
-          // parker.write(true);
+        if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)){ // Extend the de-score mech
+          
           unloader.set_value(0);
-          // pros::c::adi_digital_write(parker, true);
+          scooper.set_value(0);
+          unloader_state = false;
+          scooper_state = false;
+          
         }
 
         if(Controller1.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)){ // Retract the de-score mech
-          // parker.write(false);
-          unloader.set_value(1);
-          // pros::c::adi_digital_write(parker, false);
+          
+          unloader_state = !unloader_state; 
+
+          unloader.set_value(unloader_state);
+
         }
       
 
