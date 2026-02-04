@@ -31,6 +31,10 @@ pros::adi::DigitalOut scooper ('A');
 pros::adi::DigitalOut gate ('B');
 pros::adi::DigitalOut unloader ('c');
 
+pros::Rotation Y_encoder(-11);
+
+lemlib::TrackingWheel vertical_wheel(&Y_encoder, lemlib::Omniwheel::NEW_2, -.75);
+
 // PID and LemLib Definitions
 
 // Drivetrain settings
@@ -43,7 +47,7 @@ lemlib::ControllerSettings lateral_controller(20, 0, 200, 3, 1, 100, 3, 500, 20)
 lemlib::ControllerSettings angular_controller(1.6, 0, 10, 3, 1, 100, 3, 500, 0);
                                             //kP, kI, kD
 // Sensors for odometry
-lemlib::OdomSensors sensors(nullptr, nullptr, nullptr, nullptr, &inertialsensor);
+lemlib::OdomSensors sensors(&vertical_wheel, nullptr, nullptr, nullptr, &inertialsensor);
 
 // Create the chassis
 lemlib::Chassis chassis(drivetrain, lateral_controller, angular_controller, sensors);

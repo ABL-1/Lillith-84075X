@@ -38,7 +38,7 @@ void QualificationAutonLogic() {
 
       chassis.turnToHeading(-45, 1000);
 
-      chassis.moveToPoint(3, 30.5, 2000);
+      chassis.moveToPoint(5, 32.5, 2000);
 
       chassis.turnToHeading(-45, 1000);
 
