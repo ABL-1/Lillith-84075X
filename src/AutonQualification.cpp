@@ -32,13 +32,13 @@ void QualificationAutonLogic() {
 
       Devour();
       
-      chassis.moveToPoint(19, 31, 2000, {.maxSpeed = 32});  //voltage units from 0 to 127  this collects the three on the field
+      chassis.moveToPoint(19, 32, 2000, {.maxSpeed = 32});  //voltage units from 0 to 127  this collects the three on the field
 
       pros::c::delay(2500);
 
       chassis.turnToHeading(-45, 1000);
 
-      chassis.moveToPoint(5, 32.5, 2000);
+      chassis.moveToPoint(7, 34, 2000);
 
       chassis.turnToHeading(-45, 1000);
 
@@ -48,7 +48,7 @@ void QualificationAutonLogic() {
 
       Halt_Intake();
 
-      chassis.moveToPoint(39, 2, 3200, {.forwards = false}); //move to loader
+      chassis.moveToPoint(43, 2, 3200, {.forwards = false}); //move to loader
 
       pros::c::delay(1000);
 
@@ -59,15 +59,15 @@ void QualificationAutonLogic() {
 
       Devour();
 
-      chassis.moveToPoint(39, -14, 1000); //hits the loader
+      chassis.moveToPoint(43, -14, 1500); //hits the loader
 
-      pros::c::delay(1400);
+      pros::c::delay(1000);
 
       Halt_Intake();
 
       pros::c::delay(15);
 
-      chassis.moveToPoint(41, 15, 2000, {.forwards = false});  
+      chassis.moveToPoint(43, 23, 2000, {.forwards = false});  
 
       chassis.turnToHeading(180, 1000);
 
